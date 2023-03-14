@@ -10,7 +10,7 @@ import LoginPage from './LoginPage/LoginPage';
 import PhoneBook from './PhoneBook/PhoneBook';
 
 const App = () => {
-  const isLogin = useSelector(isUserLogin);
+  //const isLogin = useSelector(isUserLogin);
   return (
     <BrowserRouter>
       <Header />

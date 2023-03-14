@@ -16,7 +16,7 @@ const LoginPage = () => {
     onSubmit,
   });
 
-  const { name, email, password } = state;
+  const { email, password } = state;
 
   return (
     <div className="container">
