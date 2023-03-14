@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from './operations';
+import {
+  addContact,
+  deleteContact,
+  fetchContacts,
+} from './contacts-operations';
 
 const contactSlice = createSlice({
   name: 'contacts',
   initialState: {
     contacts: [],
-    filter: '',
+    filter: ' ',
     error: null,
     isLoading: false,
   },
@@ -47,7 +51,6 @@ const contactSlice = createSlice({
       })
 
       .addCase(deleteContact.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.isLoading = false;
         state.contacts = state.contacts.filter(({ id }) => id !== payload);
       })
@@ -56,23 +59,6 @@ const contactSlice = createSlice({
         state.error = payload;
       });
   },
-
-  // reducers: {
-  //   addContact: {
-  //     reducer: (state, { payload }) => {
-  //       state.contacts.push(payload);
-  //     },
-  //     prepare: data => {
-  //       return { payload: { id: nanoid(), ...data } };
-  //     },
-  //   },
-  //   deleteContact: (state, { payload }) => {
-  //     state.contacts = state.contacts.filter(item => item.id !== payload);
-  //   },
-  //   getfilter: (state, { payload }) => {
-  //     state.filter = payload.toLowerCase();
-  //   },
-  // },
 });
 
 export const contactsReducer = contactSlice.reducer;

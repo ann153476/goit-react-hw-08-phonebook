@@ -1,31 +1,28 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
-import { fetchContacts } from 'redux/operations';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+import { isUserLogin } from 'redux/auth-selectors';
+
+import Header from './Header/Header';
+import HomePage from './HomePage/HomePage';
+import RegisterPage from './RegisterPage/RegisterPage';
+import LoginPage from './LoginPage/LoginPage';
+import PhoneBook from './PhoneBook/PhoneBook';
 
 const App = () => {
-  const contacts = useSelector(state => state.contacts.contacts.contacts);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
+  const isLogin = useSelector(isUserLogin);
   return (
-    <>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <Filter></Filter>
-      {contacts.length === 0 ? (
-        <div>
-          <h2>There is no contacts</h2>
-        </div>
-      ) : (
-        <ContactList />
-      )}
-    </>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/contacts" element={<PhoneBook />} />
+
+        <Route path="/" element={<HomePage />} />
+
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

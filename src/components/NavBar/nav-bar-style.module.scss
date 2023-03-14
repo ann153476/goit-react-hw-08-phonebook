@@ -1,0 +1,25 @@
+.menu__nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: space-around;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.one__nav {
+  text-decoration: none;
+  background-color: rgba(162, 0, 255, 0.155);
+  padding: 3px;
+  font-size: 20px;
+  color: rgb(33, 2, 78);
+  border: 1px solid rgb(255, 0, 234);
+  &:hover {
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgba(230, 0, 255, 0.6);
+    color: white;
+  }
+  &:global(.active) {
+    background-color: rgba(230, 0, 255, 0.6);
+
+    color: white;
+  }
+}
