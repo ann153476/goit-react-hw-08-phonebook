@@ -6,17 +6,22 @@ import RegisterPage from './RegisterPage/RegisterPage';
 import LoginPage from './LoginPage/LoginPage';
 import PhoneBook from './PhoneBook/PhoneBook';
 
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
+
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/goit-react-hw-08-phonebook">
       <Header />
       <Routes>
-        <Route path="/contacts" element={<PhoneBook />} />
-
         <Route path="/" element={<HomePage />} />
-
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route element={<PublicRoute />}>
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/contacts" element={<PhoneBook />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
